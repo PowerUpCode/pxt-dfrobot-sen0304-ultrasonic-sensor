@@ -65,7 +65,7 @@ namespace SEN0304 {
     }
     
     /**
-     * get Sensor distance
+     * get Sensor distance (cm)
      */
     //% blockId="SEN0304_GET_DISTANCE" block="get Distance"
     //% weight=100 blockGap=8
@@ -82,7 +82,7 @@ namespace SEN0304 {
     }
     
     /**
-     * get Sensor temperature
+     * get Sensor temperature (C)
      */
     //% blockId="SEN0304_GET_TEMPERATURE" block="get Temperature"
     //% weight=100 blockGap=8
@@ -92,7 +92,7 @@ namespace SEN0304 {
         let rex_0 = i2cReadBytes(TEMP_H_INDEX);
         let rex_1 = i2cReadBytes(TEMP_L_INDEX);
         
-        temperature = (rex_0 << 8) + rex_1;
+        temperature = ((rex_0 << 8) + rex_1) / 10;
         
         return temperature;
         
