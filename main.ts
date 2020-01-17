@@ -88,6 +88,8 @@ namespace SEN0304 {
         return temperature;
         
     }    
+    
+   
 
 
     function i2cWriteBytes(reg: number, dat: number): void {
