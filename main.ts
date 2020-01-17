@@ -22,7 +22,7 @@ enum APDS9930_AGAIN {
 /**
  * pxt-sensor mudule
  */
-//% weight=100 color=#102010 icon="\uf0eb" block="APDS9930"
+//% weight=100 color=#102010 icon="\uf0eb" block="PowerUpCode Proximity Sensor"
 namespace pxtsensor {
 
 
@@ -67,7 +67,7 @@ namespace pxtsensor {
     /**
      * set ALS GAIN
      */
-    //% blockId="APDS9930_SET_AGAIN" block="set ALS GAIN %gain"
+    //% blockId="APDS9930_SET_AGAIN" block="set Sensor addres %gain"
     //% weight=100 blockGap=8
     export function AGAIN(gain: APDS9930_AGAIN) {
         let t = getReg(APDS9930_CONTROL)
