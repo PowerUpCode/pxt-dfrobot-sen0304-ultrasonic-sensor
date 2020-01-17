@@ -11,6 +11,9 @@ const CMD_DISTANCE_MEASURE = 0x01;
 const DIST_H_INDEX = 0x03;
 const DIST_L_INDEX = 0x04;
 
+const TEMP_H_INDEX = 0x05;
+const TEMP_L_INDEX = 0x06;
+
 const CFG_INDEX = 0x07;
 const CMD_INDEX = 0x08;
 
@@ -62,9 +65,9 @@ namespace SEN0304 {
     }
     
     /**
-     * get Sensor distance values
+     * get Sensor distance
      */
-    //% blockId="SEN0304_GET_VALUES" block="get Distance"
+    //% blockId="SEN0304_GET_DISTANCE" block="get Distance"
     //% weight=100 blockGap=8
     export function getDistance(): number {
         let distance = 0;
@@ -77,6 +80,23 @@ namespace SEN0304 {
         return distance;
         
     }
+    
+    /**
+     * get Sensor temperature
+     */
+    //% blockId="SEN0304_GET_TEMPERATURE" block="get Temperature"
+    //% weight=100 blockGap=8
+    export function getTemperature(): number {
+        let temperature = 0;
+        i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
+        let rex_0 = i2cReadBytes(TEMP_H_INDEX);
+        let rex_1 = i2cReadBytes(TEMP_L_INDEX);
+        
+        temperature = (rex_0 << 8) + rex_1;
+        
+        return temperature;
+        
+    }    
 
 
     function i2cWriteBytes(reg: number, dat: number): void {
