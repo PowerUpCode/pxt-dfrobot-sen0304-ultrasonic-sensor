@@ -8,6 +8,9 @@ const MEASURE_MODE_PASSIVE = 0x00;
 const MEASURE_RANG_500 = 0x20;
 const CMD_DISTANCE_MEASURE = 0x01;
 
+const DIST_H_INDEX = 0x03;
+const DIST_L_INDEX = 0x04;
+
 const CFG_INDEX = 0x07;
 const CMD_INDEX = 0x08;
 
@@ -64,7 +67,13 @@ namespace SEN0304 {
     //% blockId="SEN0304_GET_VALUES" block="get Distance"
     //% weight=100 blockGap=8
     export function getDistance(): number {
-        let distance = i2cReadBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
+        let distance = 0;
+        i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
+        let rex_0 = i2cReadBytes(DIST_H_INDEX);
+        let rex_1 = i2cReadBytes(DIST_L_INDEX);
+        
+        distance = ((uint16_t)rex_0 << 8) + rex_1;
+        
         return distance;
         
     }
