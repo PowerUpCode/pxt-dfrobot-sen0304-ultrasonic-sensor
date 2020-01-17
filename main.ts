@@ -3,22 +3,22 @@
  * makecode PowerUpCode DFRobot IIC Ultrasonic Sensor package.
  */
 
-const SEN0304_I2C_ADDRESS = 0x11
-const MEASURE_MODE_PASSIVE = 0x00
-const MEASURE_RANG_500 = 0x20
-const CMD_DISTANCE_MEASURE = 0x01
+const SEN0304_I2C_ADDRESS = 0x11;
+const MEASURE_MODE_PASSIVE = 0x00;
+const MEASURE_RANG_500 = 0x20;
+const CMD_DISTANCE_MEASURE = 0x01;
 
-const CFG_INDEX = 0x07
-const CMD_INDEX = 0x08
+const CFG_INDEX = 0x07;
+const CMD_INDEX = 0x08;
 
 
 
 enum SEN0304_RANGE {
     
-    RANGE_150 = 150,
-    RANGE_300 = 300,
+    RANGE_150 = 0x20,
+    RANGE_300 = 0x20,
     RANGE_500 = 0x20
-}
+};
 
 
 
@@ -90,27 +90,6 @@ namespace pxtsensor {
 
     }    
     
-    /**
-     * set ALS GAIN
-     */
-    //% blockId="APDS9930_SET_AGAIN" block="set Sensor addres %gain"
-    //% weight=100 blockGap=8
-    export function AGAIN(gain: APDS9930_AGAIN) {
-        let t = getReg(APDS9930_CONTROL)
-        t &= 0xFC
-        switch (gain) {
-            case APDS9930_AGAIN.AGAIN_8:
-                t |= 1;
-                break;
-            case APDS9930_AGAIN.AGAIN_16:
-                t |= 2;
-                break;
-            case APDS9930_AGAIN.AGAIN_120:
-                t |= 3;
-                break;
-        }
-        setReg(APDS9930_CONTROL, t)
-        _AGAIN = gain
-    }
+
     
     }
