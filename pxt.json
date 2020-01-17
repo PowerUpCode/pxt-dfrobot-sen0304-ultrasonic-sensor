@@ -10,9 +10,6 @@
         "README.md",
         "main.ts"
     ],
-    /*"testFiles": [
-        "test1.ts",
-        "test2.ts"
-    ],*/
-    "public": false
+
+    "public": true
 }
