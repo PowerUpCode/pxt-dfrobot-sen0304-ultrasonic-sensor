@@ -52,7 +52,7 @@ namespace pxtsensor {
      */
     //% blockId="SEN0304_SET_RANGE" block="set Range %range"
     //% weight=100 blockGap=8
-    function setup(range: SEN0304_RANGE): void {
+    export function setup(range: SEN0304_RANGE): void {
       let data =  (MEASURE_MODE_PASSIVE | range);//the measurement mode is set to passive mode, measurement range is set to 500CM.
       i2cWriteBytes(CFG_INDEX, data);
       
