@@ -65,7 +65,7 @@ namespace SEN0304 {
     //% weight=100 blockGap=8
     export function getDistance(): number {
         let distance = i2cReadBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
-        return distance
+        return distance;
         
     }
 
