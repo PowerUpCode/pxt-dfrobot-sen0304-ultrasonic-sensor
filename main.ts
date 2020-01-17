@@ -72,7 +72,7 @@ namespace SEN0304 {
         let rex_0 = i2cReadBytes(DIST_H_INDEX);
         let rex_1 = i2cReadBytes(DIST_L_INDEX);
         
-        distance = ((uint16_t)rex_0 << 8) + rex_1;
+        distance = (rex_0 << 8) + rex_1;
         
         return distance;
         
