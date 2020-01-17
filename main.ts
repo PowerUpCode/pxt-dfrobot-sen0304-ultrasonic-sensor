@@ -1,6 +1,6 @@
 
 /**
- * makecode pxtsensor IIC Proximity Sensor package.
+ * makecode PowerUpCode DFRobot IIC Ultrasonic Sensor package.
  */
 
 const APDS9930_I2C_ADDRESS = 0x39
@@ -22,7 +22,7 @@ enum APDS9930_AGAIN {
 /**
  * pxt-sensor mudule
  */
-//% weight=100 color=#102010 icon="\uf0eb" block="PowerUpCode Proximity Sensor"
+//% weight=100 color=#102010 icon="\uf0eb" block="Ultrasonic Sensor"
 namespace pxtsensor {
 
 
