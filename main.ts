@@ -15,8 +15,8 @@ const CMD_INDEX = 0x08;
 
 enum SEN0304_RANGE {
     
-    RANGE_150 = 0x20,
-    RANGE_300 = 0x20,
+    RANGE_150 = 0x00,
+    RANGE_300 = 0x10,
     RANGE_500 = 0x20
 };
 
@@ -36,10 +36,10 @@ enum APDS9930_AGAIN {
 
 };
 /**
- * pxt-sensor mudule
+ * SEN0304 mudule
  */
 //% weight=100 color=#102010 icon="\uf0eb" block="Ultrasonic Sensor"
-namespace pxtsensor {
+namespace SEN0304 {
 
 
     let _wbuf = pins.createBuffer(2);
@@ -59,10 +59,16 @@ namespace pxtsensor {
     }
     
     /**
-
-     * set APDS9930's reg
-
+     * get Sensor distance values
      */
+    //% blockId="SEN0304_GET_VALUES" block="get Distance"
+    //% weight=100 blockGap=8
+    export function getDistance(): number {
+        let distance = i2cReadBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
+        return distance
+        
+    }
+
 
     function i2cWriteBytes(reg: number, dat: number): void {
 
@@ -76,13 +82,9 @@ namespace pxtsensor {
 
 
 
-    /**
 
-     * get a reg
 
-     */
-
-    function getReg(reg: number): number {
+    function i2cReadBytes(reg: number): number {
 
         pins.i2cWriteNumber(SEN0304_I2C_ADDRESS, reg, NumberFormat.UInt8BE);
 
