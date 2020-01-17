@@ -28,19 +28,7 @@ enum SEN0304_RANGE {
 
 
 
-// AGAIN
 
-enum APDS9930_AGAIN {
-
-    AGAIN_1 = 1,
-
-    AGAIN_8 = 8,
-
-    AGAIN_16 = 16,
-
-    AGAIN_120 = 120
-
-};
 /**
  * SEN0304 mudule
  */
@@ -49,6 +37,7 @@ namespace SEN0304 {
 
 
     let _wbuf = pins.createBuffer(2);
+    let _rbuf = pins.createBuffer(2);
 
     let _AGAIN = 1;
     
@@ -72,10 +61,11 @@ namespace SEN0304 {
     export function getDistance(): number {
         let distance = 0;
         i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
-        let rex_0 = i2cReadBytes(DIST_H_INDEX);
-        let rex_1 = i2cReadBytes(DIST_L_INDEX);
+        basic.pause(100)
+        _rbuf[0] = i2cReadBytes(DIST_H_INDEX);
+        _rbuf[1] = i2cReadBytes(DIST_L_INDEX);
         
-        distance = (rex_0 << 8) + rex_1;
+        distance = (_rbuf[0] << 8) + _rbuf[1];
         
         return distance;
         
@@ -89,10 +79,11 @@ namespace SEN0304 {
     export function getTemperature(): number {
         let temperature = 0;
         i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
-        let rex_0 = i2cReadBytes(TEMP_H_INDEX);
-        let rex_1 = i2cReadBytes(TEMP_L_INDEX);
+        basic.pause(100)
+        _rbuf[0] = i2cReadBytes(TEMP_H_INDEX);
+        _rbuf[1] = i2cReadBytes(TEMP_L_INDEX);
         
-        temperature = ((rex_0 << 8) + rex_1) / 10;
+        temperature = ((_rbuf[0] << 8) + _rbuf[1]) / 10;
         
         return temperature;
         
@@ -102,7 +93,6 @@ namespace SEN0304 {
     function i2cWriteBytes(reg: number, dat: number): void {
 
         _wbuf[0] = reg | 0xA0;
-
         _wbuf[1] = dat;
 
         pins.i2cWriteBuffer(SEN0304_I2C_ADDRESS, _wbuf);
@@ -116,7 +106,6 @@ namespace SEN0304 {
     function i2cReadBytes(reg: number): number {
 
         pins.i2cWriteNumber(SEN0304_I2C_ADDRESS, reg, NumberFormat.UInt8BE);
-
         return pins.i2cReadNumber(SEN0304_I2C_ADDRESS, NumberFormat.UInt8BE);
 
     }    
