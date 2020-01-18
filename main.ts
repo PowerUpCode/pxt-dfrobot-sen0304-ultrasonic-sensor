@@ -168,7 +168,8 @@ namespace SEN0304 {
 
     function i2cWriteBytes(reg: number, dat: number): void {
 
-        _wbuf[0] = reg | 0xA0;
+        //_wbuf[0] = reg | 0xA0;
+        _wbuf[0] = reg;
         _wbuf[1] = dat;
 
         pins.i2cWriteBuffer(SEN0304_I2C_ADDRESS, _wbuf);
