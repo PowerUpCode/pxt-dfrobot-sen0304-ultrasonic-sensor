@@ -71,6 +71,80 @@ namespace SEN0304 {
         
     }
     
+
+    /**
+
+     * get Sensor distance (cm)
+
+     */
+
+    //% blockId="SEN0304_GET_DISTANCE_1" block="get Distance high"
+
+    //% weight=100 blockGap=8
+
+    export function getDistance_h(): number {
+
+        let distance = 0;
+
+        i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
+
+        basic.pause(200)
+
+        _rbuf[0] = i2cReadBytes(DIST_H_INDEX);
+
+        _rbuf[1] = i2cReadBytes(DIST_L_INDEX);
+
+        
+
+        distance = (_rbuf[0] << 8) + _rbuf[1];
+
+        
+
+        return _rbuf[0];
+
+        
+
+    }    
+    
+    
+    
+    
+    /**
+
+     * get Sensor distance (cm)
+
+     */
+
+    //% blockId="SEN0304_GET_DISTANCE_2" block="get Distance low"
+
+    //% weight=100 blockGap=8
+
+    export function getDistance_l(): number {
+
+        let distance = 0;
+
+        i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
+
+        basic.pause(200)
+
+        _rbuf[0] = i2cReadBytes(DIST_H_INDEX);
+
+        _rbuf[1] = i2cReadBytes(DIST_L_INDEX);
+
+        
+
+        distance = (_rbuf[0] << 8) + _rbuf[1];
+
+        
+
+        return _rbuf[1];
+
+        
+
+    }      
+    
+    
+    
     /**
      * get Sensor temperature (C)
      */
