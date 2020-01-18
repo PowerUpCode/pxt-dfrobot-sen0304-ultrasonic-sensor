@@ -61,7 +61,7 @@ namespace SEN0304 {
     export function getDistance(): number {
         let distance = 0;
         i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
-        basic.pause(100)
+        basic.pause(200)
         _rbuf[0] = i2cReadBytes(DIST_H_INDEX);
         _rbuf[1] = i2cReadBytes(DIST_L_INDEX);
         
@@ -79,7 +79,7 @@ namespace SEN0304 {
     export function getTemperature(): number {
         let temperature = 0;
         i2cWriteBytes(CMD_INDEX, CMD_DISTANCE_MEASURE);
-        basic.pause(100)
+        basic.pause(200)
         _rbuf[0] = i2cReadBytes(TEMP_H_INDEX);
         _rbuf[1] = i2cReadBytes(TEMP_L_INDEX);
         
